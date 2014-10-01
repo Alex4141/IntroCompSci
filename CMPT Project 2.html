@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			CMPT Project 2
+		</title>
+		<meta charset = "utf-8" />
+		<meta name = "author" content = "Alexander Goncalves" />
+		<meta name = "description" content = "Game V 0.2" />
+		<script>
+			var output;
+			var userLocation = "Room1"; //userLocation being my global variable
+			var x = 0; 
+			var room2Found = false;
+			var room3Found = false;
+			var room4Found = false;
+			var pointTotal = 5;
+			
+			function North_click() {
+				if (userLocation === "Room1") {
+					if (room2Found === false) {
+						room2Found = true;
+						pointTotal = pointTotal + 5;
+						}
+					userLocation = "Room2";
+					showMessage("You have walked into a Foyer, on the ceiling is a giant stuffed Eagle. There are rooms to your sides \n Point Total: " + pointTotal + "\n");
+				} else {
+					showMessage("This choice is impossible!");
+					}
+				}	
+				
+			function South_click() {
+				if (userLocation === "Room2") {
+					userLocation = "Room1";
+					showMessage("You have returned to the basement room with the red rug! \n Point Total: " + pointTotal + "\n");
+				} else {
+					showMessage("This choice is impossible!");
+					}
+				}
+			
+			function East_click() {
+				if (userLocation === "Room2") {
+					if (room3Found === false) {
+						room3Found = true;
+						pointTotal = pointTotal + 5;
+						}
+					userLocation = "Room3";
+					showMessage("You have walked into the East Wing! \n Point Total: " + pointTotal + "\n");
+				} else {
+					showMessage("This choice is impossible!");
+					}
+				if (userLocation === "Room4") {
+					userLocation = "Room2";
+					showMessage("You have walked back into the foyer! \n Point Total: " + pointTotal + "\n");
+					}
+				}
+				
+			function West_click() {
+				if (userLocation === "Room2") {
+					if (room4Found === false) {
+						room4Found = true;
+						pointTotal = pointTotal + 5;
+						}
+					userLocation = "Room4";
+					showMessage("You have walked into the West Wing! \n Point Total: " + pointTotal + "\n");
+				} else {
+					showMessage("This choice is impossible!");
+					}
+				if (userLocation === "Room3") {
+					userLocation = "Room2";
+					showMessage("You have walked back into the foyer! \n Point Total: " + pointTotal + "\n");
+					}
+				}
+						
+			function showMessage(message) {
+				var targetTextArea = document.getElementById("target");
+				targetTextArea.value = message + "\n" + targetTextArea.value;
+				}
+				
+		</script>
+		<style>
+		body {background-color: Lavender}
+			.footer {color: LightCoral; font-weight: bold; font-family: AR DARLING;}
+			.fontSwitch {font-family: Times New Roman;}
+		</style>
+	</head>
+	<body>
+	<h1 class = "footer">
+			Red Fox Adventure Game (Tentative Title)
+		</h1>
+		<p class = "fontSwitch">
+			<a href = "mailto:agoncalves4141@gmail.com">
+				Email: agoncalves4141@gmail.com
+			</a>			
+		</p>
+		<textarea rows = "10" cols = "35" id = "target"> You are in a basement standing on a red rug, an ominous door lies in front of you. 
+			Point Total: 5 
+			</textarea>
+		<br />
+		<input type = "button" 
+			   value = "North"
+			   onclick = "North_click();" />
+		
+		<input type = "button"
+			   value = "South"
+			   onclick = "South_click();" />
+			   
+		<input type = "button"
+			   value = "East"
+			   onclick = "East_click();" />	   
+		
+		<input type = "button"
+			   value = "West"
+			   onclick = "West_click();" />
+			   
+		<br />
+	</body>
+</html>
