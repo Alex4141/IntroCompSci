@@ -129,25 +129,26 @@
 			westClick();
 			} else {
 			desc = "This input is not valid. Please try something else.";
-				}	
-			}
+			}	
+		}
 			
 			// Takes account of navigation errors AKA the default
 			
-        	function navigationError() {
-        	navigationErrorCount = navigationErrorCount + 1;
-        	if (navigationErrorCount < extremeError) {
+	function navigationError() {
+    navigationErrorCount = navigationErrorCount + 1;
+        if (navigationErrorCount < extremeError) {
         	updateDisplay("You cannot go that way. ");
-        	} else {
+        } else {
         	updateDisplay("Cut it out!");
-        	}	
         }	
+    }	
        
        // Disables North Button
     function north_ClickDisabled() {
 		if( (userLoc === "Room2" || userLoc === "Room5" || userLoc === "Room6" || userLoc === "Room7") ) {
 		document.getElementById("North").disabled = true;
-	} else { document.getElementById("North").disabled = false;
+		} else { 
+			document.getElementById("North").disabled = false;
 		}
 	}
 	
@@ -155,7 +156,8 @@
 	function south_ClickDisabled() {
 		if( (userLoc === "Room1" || userLoc === "Room4" || userLoc === "Room3" || userLoc === "Room6") ) {
 		document.getElementById("South").disabled = true;
-	} else { document.getElementById("South").disabled = false;
+	} else { 
+		document.getElementById("South").disabled = false;
 		}
 	}
 	
@@ -163,7 +165,8 @@
 	function east_ClickDisabled() {
 		if( (userLoc === "Room1" || userLoc === "Room3" || userLoc === "Room7") ) {
 		document.getElementById("East").disabled = true;
-	} else { document.getElementById("East").disabled = false;
+	} else { 
+		document.getElementById("East").disabled = false;
 		}
 	}
 	
@@ -171,7 +174,8 @@
 	function west_ClickDisabled() {
 		if( (userLoc === "Room1" || userLoc === "Room4" || userLoc === "Room5") ) {
 		document.getElementById("West").disabled = true;
-	} else { document.getElementById("West").disabled = false;
+	} else { 
+		document.getElementById("West").disabled = false;
 		}
 	}	
 	
