@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<!-- Alexander Goncalves
+		October 20th, 2014
+		CMPT 120: Project 3 -->
+		<title>
+			Red Fox Adventures
+		</title>
+		<meta charset = "utf-8" />
+		<meta name = "author" content = "Alexander Goncalves" />
+		<meta name = "description" content = "Game V 0.2" />
+		<script>
+		//
+		// Global Variables
+		//
+		
+		var userLoc = "Room1";
+		var room2Found = false;
+		var room3Found = false;
+		var room4Found = false;
+		var room5Found = false;
+		var room6Found = false;
+		var room7Found = false;
+		var pointTotal = 5;
+		var navigationErrorCount = 0;
+		var extremeError = 5;
+		
+		//
+		// Initialization
+		// onload is on the body tag
+		
+		function init() {
+			look();
+		}
+		
+		//
+		// Navigation Functions
+		//
+		
+		//Button Takes You North
+		function northClick() {
+			if (userLoc === "Room1") {
+				userLoc ="Room2";
+				look();
+			} else if (userLoc === "Room4") {
+				userLoc = "Room5";	
+				look();
+			} else if (userLoc === "Room3") {
+				userLoc = "Room7";
+				look();
+			} else {
+				navigationError();
+			}
+		}
+		
+		//Button Takes You South	
+		function southClick() {
+			if (userLoc === "Room2") {
+				userLoc = "Room1";
+				look();
+			} else if(userLoc === "Room5") {
+				userLoc = "Room4";
+				look();
+			} else if (userLoc === "Room7") {
+				userLoc = "Room3";
+				look();
+			} else {
+				navigationError();
+			}
+		}
+		
+		//Button Takes You East
+		function eastClick() {
+			if (userLoc === "Room2") {
+				userLoc = "Room3";
+				look();
+			} else if (userLoc === "Room4") {
+				userLoc = "Room2";	
+				look();
+			} else if(userLoc === "Room5") {
+				userLoc = "Room6";
+				look();
+			} else if (userLoc === "Room6") {
+				userLoc = "Room7";
+				look();
+			} else {
+				navigationError();
+			}
+		}
+		
+		//Button Takes You West
+		function westClick() {
+			if (userLoc === "Room2") {
+				userLoc = "Room4";
+				look();
+			} else if(userLoc === "Room3") {
+				userLoc = "Room2";
+				look();
+			} else if(userLoc === "Room6") {
+				userLoc = "Room5";
+				look();
+			} else if (userLoc === "Room7") {
+				userLoc = "Room6";
+				look();
+			} else {
+				navigationError();
+			}
+		}
+				
+		// Text Input/Button Alternatives
+		function input_Go() {
+			var mainText = document.getElementById("txtCommand").value;
+			if (mainText === "N") {
+			northClick();
+			} else if (mainText === "n"){
+			northClick();
+			} else if (mainText === "S"){ 
+			southClick();
+			} else if (mainText === "s"){
+			southClick();
+			} else if (mainText === "E"){
+			eastClick();
+			} else if (mainText === "e"){
+			eastClick();
+			} else if (mainText === "W"){
+			westClick();
+			} else if (mainText === "w"){
+			westClick();
+			} else {
+			desc = "This input is not valid. Please try something else.";
+				}	
+			}
+			
+			// Takes account of navigation errors AKA the default
+			
+        	function navigationError() {
+        	navigationErrorCount = navigationErrorCount + 1;
+        	if (navigationErrorCount < extremeError) {
+        	updateDisplay("You cannot go that way. ");
+        	} else {
+        	updateDisplay("Cut it out!");
+        	}	
+        }	
+       
+       // Disables North Button
+    function north_ClickDisabled() {
+		if( (userLoc === "Room2" || userLoc === "Room5" || userLoc === "Room6" || userLoc === "Room7") ) {
+		document.getElementById("North").disabled = true;
+	} else { document.getElementById("North").disabled = false;
+		}
+	}
+	
+	// Disables South Button
+	function south_ClickDisabled() {
+		if( (userLoc === "Room1" || userLoc === "Room4" || userLoc === "Room3" || userLoc === "Room6") ) {
+		document.getElementById("South").disabled = true;
+	} else { document.getElementById("South").disabled = false;
+		}
+	}
+	
+	// Disables East Button
+	function east_ClickDisabled() {
+		if( (userLoc === "Room1" || userLoc === "Room3" || userLoc === "Room7") ) {
+		document.getElementById("East").disabled = true;
+	} else { document.getElementById("East").disabled = false;
+		}
+	}
+	
+	// Disables West Button
+	function west_ClickDisabled() {
+		if( (userLoc === "Room1" || userLoc === "Room4" || userLoc === "Room5") ) {
+		document.getElementById("West").disabled = true;
+	} else { document.getElementById("West").disabled = false;
+		}
+	}	
+	
+	// Function Makes Disable Buttons Work
+	function disableButton() {
+		north_ClickDisabled();
+		south_ClickDisabled();
+		east_ClickDisabled();
+		west_ClickDisabled();
+	}
+	
+			//
+			// Story / Locale Functions
+			//
+			
+			function look() {
+				var msg = " ";
+				switch(userLoc) {
+					case "Room1": msg = "You are lost in the Pirate Ship's basement. You are standing on a red rug, an ominous staircase lies in front of you. \n"; 
+						break;
+					case "Room2": msg = "You have walked into a Foyer, a burning candle sits atop plundered cargo. There are two rooms to your sides \n";
+						break;
+					case "Room3": msg = "You have walked into the East Wing! Another room lies directly ahead \n ";
+						break;
+					case "Room4": msg = "You have walked into the West Wing! Another room lies directly ahead \n ";
+						break;
+					case "Room5": msg = "This room has a large crack exposing the ocean. You notice some jettison and an ominous shadow in the water. \n ";
+						break;
+					case "Room6": msg = "This room appears to be the Captain's Quarters. He has them tucked away in his Piggy Bank. \n "; 
+						break;
+					case "Room7": msg = "This room is the armory. Housing only the most modern technology... Muskets and Gunpowder. \n ";
+						break;
+					default: msg = "This choice is impossible!";
+				}
+				//Order is important here. Display is dependent on this
+				pointCounter();
+				msg = msg + "\n" + "Score: " + pointTotal ;
+				updateDisplay(msg);
+				disableButton();
+			}				
+		
+		//
+		// Utility Functions
+		//
+		
+		function pointCounter() {
+			if ( (! room2Found) && (userLoc === "Room2") ) {
+				pointTotal = pointTotal + 5;
+				room2Found = true;
+			} else if ( (! room3Found) && (userLoc === "Room3") ) {
+				pointTotal = pointTotal + 5;
+				room3Found = true;
+			} else if ( (! room4Found) && (userLoc === "Room4") ) {
+				pointTotal = pointTotal + 5;
+				room4Found = true;
+			} else if ( (! room5Found) && (userLoc === "Room5") ) {
+				pointTotal = pointTotal + 5;
+				room5Found = true;
+			} else if ( (! room6Found) && (userLoc === "Room6") ) {
+				pointTotal = pointTotal + 5;
+				room6Found = true;
+			} else if ( (! room7Found) && (userLoc === "Room7") ) {
+				pointTotal = pointTotal + 5;
+				room7Found = true;
+			}
+		}
+		
+		//Displays the messages
+		function updateDisplay(msg) {
+			var targetTextArea = document.getElementById("target");
+			targetTextArea.value = msg + "\n\n" + targetTextArea.value;
+			}
+		
+		</script>
+		<style>
+		body {background-color: Lavender}
+			.footer {color: LightCoral; font-weight: bold; font-family: AR DARLING;}
+			.fontSwitch {font-family: Times New Roman;}
+		</style>
+	</head>
+	<body onload ="init();">
+	<h1 class = "footer">
+			Red Fox Adventure Game (Tentative Title)
+		</h1>
+		<p class = "fontSwitch">
+			<a href = "mailto:agoncalves4141@gmail.com">
+				Email: agoncalves4141@gmail.com
+			</a>			
+		</p>
+		<textarea rows = "10" cols = "35" id = "target"> 
+			</textarea>
+		<br >
+		<input type = "button" 
+			   id = "North"
+			   value = "North"
+			   onclick = "northClick();" />
+		
+		<input type = "button"
+			   id = "South"
+			   value = "South"
+			   onclick = "southClick();" />
+			   
+		<input type = "button"
+			   id = "East"
+			   value = "East"
+			   onclick = "eastClick();" />	   
+		
+		<input type = "button"
+			   id = "West"
+			   value = "West"
+			   onclick = "westClick();" />
+			   
+		<br />
+		<br />
+		
+		<input type = "text"
+				id = "txtCommand"
+				name = "txtCommand" />
+		
+		<input type = "button"
+				value = "Go"
+				onclick = "input_Go();" />
+	</body>
+</html>	
