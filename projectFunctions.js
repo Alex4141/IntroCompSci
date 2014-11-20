@@ -3,15 +3,15 @@
 		//
 		
 		var userLoc = "Room1";
-		var room2Found = false;
-		var room3Found = false;
-		var room4Found = false;
-		var room5Found = false;
-		var room6Found = false;
-		var room7Found = false;
-		var room8Found = false;
-		var room9Found = false;
-		var room10Found = false;
+		var foyerFound = false;
+		var eastWingFound = false;
+		var westWingFound = false;
+		var crackedRoomFound = false;
+		var cptnQuartFound = false;
+		var armoryFound = false;
+		var theBrigFound = false;
+		var windlassFound = false;
+		var secretCabinFound = false;
 		
 		var hasRuby = false;
 		var hasMusket = false;
@@ -33,93 +33,119 @@
 		// Navigation Functions
 		//
 		
-		//Button Takes You North
-		function northClick() {
-			if (userLoc === "Room1") {
-				userLoc ="Room2";
-				look();
-			} else if (userLoc === "Room4") {
-				userLoc = "Room5";	
-				look();
-			} else if (userLoc === "Room3") {
-				userLoc = "Room7";
-				look();
-			} else if (userLoc === "Room5") {
-				userLoc = "Room8";
-				look();
-			} else if (userLoc === "Room10") {
-				userLoc = "Room9";
-				look();
-			} else {
-				navigationError();
+		// Takes You North
+		// Look, for the message 
+		function northClick() {			
+			switch(userLoc) {
+				case "Room1":
+					userLoc = "Room2";
+					look();
+					break;
+				case "Room4":
+					userLoc = "Room5";
+					look();
+					break;
+				case "Room3":
+					userLoc = "Room7";
+					look();
+					break;
+				case "Room5":
+					userLoc = "Room8";
+					look();
+					break;
+				case "Room10":
+					userLoc = "Room9";
+					look();
+					break;
+				default: 
+					navigationError();
 			}
-		}
+		}			
 		
-		//Button Takes You South	
+		// Takes You South	
 		function southClick() {
-			if (userLoc === "Room2") {
-				userLoc = "Room1";
-				look();
-			} else if(userLoc === "Room5") {
-				userLoc = "Room4";
-				look();
-			} else if (userLoc === "Room7") {
-				userLoc = "Room3";
-				look();
-			} else if (userLoc === "Room9") {
-				userLoc = "Room10";
-				look();
-			} else if (userLoc === "Room8") {
-				userLoc = "Room5";
-				look();
-			} else {
-				navigationError();
+			switch(userLoc) {
+				case "Room2":
+					userLoc = "Room1";
+					look();
+					break;		
+				case "Room5":
+					userLoc = "Room4";
+					look();
+					break;
+				case "Room7":
+					userLoc = "Room3";
+					look();
+					break;	
+				case "Room9":
+					userLoc = "Room10";
+					look();
+					break;	
+				case "Room8":
+					userLoc = "Room5";
+					look();
+					break;	
+				default: 
+					navigationError();
 			}
-		}
-		
-		//Button Takes You East
+		}			
+
+		// Takes You East
 		function eastClick() {
-			if (userLoc === "Room2") {
-				userLoc = "Room3";
-				look();
-			} else if (userLoc === "Room4") {
-				userLoc = "Room2";	
-				look();
-			} else if(userLoc === "Room5") {
-				userLoc = "Room6";
-				look();
-			} else if (userLoc === "Room6") {
-				userLoc = "Room7";
-				look();
-			} else if (userLoc === "Room7") {
-				userLoc = "Room9";
-				look();
-			} else {
-				navigationError();
-			}
+			switch(userLoc){
+				case "Room2":
+					userLoc  = "Room3";
+					look();
+					break;
+				case "Room4":
+					userLoc  = "Room2";
+					look();
+					break;
+				case "Room5":
+					userLoc  = "Room6";
+					look();
+					break;
+				case "Room6":
+					userLoc  = "Room7";
+					look();
+					break;
+				case "Room7":
+					userLoc  = "Room9";
+					look();
+					break;
+				default:
+					navigationError();
+			}		
 		}
-		
-		//Button Takes You West
+	
+		// Takes You West	
 		function westClick() {
-			if (userLoc === "Room2") {
-				userLoc = "Room4";
-				look();
-			} else if(userLoc === "Room3") {
-				userLoc = "Room2";
-				look();
-			} else if(userLoc === "Room6") {
-				userLoc = "Room5";
-				look();
-			} else if (userLoc === "Room7") {
-				userLoc = "Room6";
-				look();
-			} else if (userLoc === "Room9") {
-				userLoc = "Room7";
-				look();
-			} else {
-				navigationError();
-			}
-		}
+			switch(userLoc) {
+				case "Room2":
+					userLoc = "Room4";
+					look();
+					break;
+				case "Room3":
+					userLoc = "Room2";
+					look();
+					break;
+				case "Room6":
+					userLoc = "Room5";
+					look();
+					break;
+				case "Room7":
+					userLoc = "Room6";
+					look();
+					break;
+				case "Room9":
+					userLoc = "Room7";
+					look();
+					break;
+				default:
+					navigationError();
+			}		
+		}			
+		
 		
 		//Help Button
 		function user_Help() {
@@ -274,33 +300,33 @@
 		//
 		
 		function pointCounter() {
-			if ( (! room2Found) && (userLoc === "Room2") ) {
+			if ( (! foyerFound) && (userLoc === "Room2") ) {
 				pointTotal = pointTotal + 5;
-				room2Found = true;
-			} else if ( (! room3Found) && (userLoc === "Room3") ) {
+				foyerFound = true;
+			} else if ( (! eastWingFound) && (userLoc === "Room3") ) {
 				pointTotal = pointTotal + 5;
-				room3Found = true;
-			} else if ( (! room4Found) && (userLoc === "Room4") ) {
+				eastWingFound = true;
+			} else if ( (! westWingFound) && (userLoc === "Room4") ) {
 				pointTotal = pointTotal + 5;
-				room4Found = true;
-			} else if ( (! room5Found) && (userLoc === "Room5") ) {
+				westWingFound = true;
+			} else if ( (! crackedRoomFound) && (userLoc === "Room5") ) {
 				pointTotal = pointTotal + 5;
-				room5Found = true;
-			} else if ( (! room6Found) && (userLoc === "Room6") ) {
+				crackedRoomFound = true;
+			} else if ( (! cptnQuartFound) && (userLoc === "Room6") ) {
 				pointTotal = pointTotal + 5;
-				room6Found = true;
-			} else if ( (! room7Found) && (userLoc === "Room7") ) {
+				cptnQuartFound = true;
+			} else if ( (! armoryFound) && (userLoc === "Room7") ) {
 				pointTotal = pointTotal + 5;
-				room7Found = true;
-			} else if ( (! room8Found) && (userLoc === "Room8") ) {
+				armoryFound = true;
+			} else if ( (! theBrigFound) && (userLoc === "Room8") ) {
 				pointTotal = pointTotal + 5;
-				room8Found = true;
-			} else if ( (! room9Found) && (userLoc === "Room9") ) {
+				theBrigFound = true;
+			} else if ( (! windlassFound) && (userLoc === "Room9") ) {
 				pointTotal = pointTotal + 5;
-				room9Found = true;
-			} else if ( (! room10Found) && (userLoc === "Room10") ) {
+				windlassFound = true;
+			} else if ( (! secretCabinFound) && (userLoc === "Room10") ) {
 				pointTotal = pointTotal + 5;
-				room10Found = true;
+				secretCabinFound = true;
 			}
 		}
 		
