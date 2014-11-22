@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<!-- Alexander Goncalves
+		October 20th, 2014
+		CMPT 120: Project 3 -->
+		<title>
+			Red Fox Adventures
+		</title>
+		<meta charset = "utf-8" />
+		<meta name = "author" content = "Alexander Goncalves" />
+		<meta name = "description" content = "Game V 0.2" />
+		<script src = "projectFunctions1.js"> </script>
+		<style>
+		body {background-color: Lavender}
+			.footer {color: LightCoral; font-weight: bold; font-family: AR DARLING;}
+			.fontSwitch {font-family: Times New Roman;}
+		</style>
+	</head>
+	<body onload ="init();">
+	<h1 class = "footer">
+			Pirate Adventure Game 
+		</h1>
+		<p class = "fontSwitch">
+			<a href = "mailto:agoncalves4141@gmail.com">
+				Email: agoncalves4141@gmail.com
+			</a>			
+		</p>
+		<img id="map" src = "Big Bad Project Map.jpg" alt = "Game Map" style = "display: none;" height = "450" width = "450" />
+		<textarea rows = "10" cols = "35" id = "target"> 
+		</textarea>
+		<br >
+		<input type = "button" 
+			   id = "North"
+			   value = "North"
+			   onclick = "northClick();" />
+		
+		<input type = "button"
+			   id = "South"
+			   value = "South"
+			   onclick = "southClick();" />
+			   
+		<input type = "button"
+			   id = "East"
+			   value = "East"
+			   onclick = "eastClick();" />	   
+		
+		<input type = "button"
+			   id = "West"
+			   value = "West"
+			   onclick = "westClick();" />
+			   
+		<br />
+		<br />
+		
+		<input type = "button"
+				id = "userHelp"
+				value = "Help"
+				onclick = "user_Help();" />
+	
+		<input type = "button"
+				id = "userTake"
+				value = "Take"
+				onclick = "user_Take();" />
+			
+		<input type = "button"
+				id = "inventory"
+				value = "Inventory"
+				onclick = "inventory_Search();" />
+				
+		<br />
+		<br/>
+		
+		<input type = "text"
+				id = "txtCommand"
+				name = "txtCommand" />
+		
+		<input type = "button"
+				value = "Go"
+				onclick = "input_Go();" />
+	</body>
+</html>	
