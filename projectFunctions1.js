@@ -1,7 +1,3 @@
-		//
-		// Global Variables
-		//
-		
 		//Global Arrays
 		//For The Locations
 		var locArray = new Array();
@@ -9,14 +5,15 @@
 		//For the Items
 		var itemArray = new Array();
 		
+		// Prototype of Location
+		//
+		//
 		function locale() {
 		// Attributes
 		this.id = "";
 		this.name = "";
 		this.description = "";
 		this.item = "";
-		this.found = "false";
-		this.score = 5;
 	
 		// Methods
 		this.toString = function() { 
@@ -24,6 +21,9 @@
 						}
 		}
 		
+		//Prototype of Item
+		//
+		//
 		function item() {
 		// Attributes
 		this.id = "";
@@ -36,6 +36,7 @@
 						}
 		}
 		
+		//Initiates usage of loc and item instances
 		function init() {
 		var loc0 = new locale();
 		loc0.id = 0;
@@ -127,6 +128,12 @@
 		item3.name = "Love Letter";
 		item3.description = "You took the prisoner's Love Letter! \n";
 		
+		var item4 = new item();
+		item4.id = "";
+		item4.name = "";
+		item4.description = "";
+		
+		//Storing the 10 instances of location
 		locArray[0] = loc0;
 		locArray[1] = loc1;
 		locArray[2] = loc2;
@@ -138,9 +145,21 @@
 		locArray[8] = loc8;
 		locArray[9] = loc9;
 		updateDisplay(locArray[i].toString());
+		
+		//Storing the 4 instances of items
+		itemArray[0] = item0;
+		itemArray[1] = item1;
+		itemArray[2] = item2;
+		itemArray[3] = item3;
+		itemArray[4] = item4;
+		updateDisplay(itemArray[j].toString());
 		}
 		
+		// Navigate indexes
 		var i = 0;
+		var j = 4;
+		
+		//Starts user in basement
 		var userLoc = locArray[0];
 		
 		var foyerFound = false;
@@ -156,6 +175,7 @@
 		var hasRuby = false;
 		var hasMusket = false;
 		var hasMap = false;
+		var hasLetter = false;
 		
 		var pointTotal = 5;
 		var navigationErrorCount = 0;
@@ -258,52 +278,77 @@
 			updateDisplay(msg);
 		}
 		
-		// Take Items. If they're there
-		function user_Take() {
-			if (userLoc === "Room4" && !hasRuby) {
-			updateDisplay("A secret ruby has been obtained!");
-			hasRuby = true; 
-		} else if (userLoc === "Room7" && !hasMusket) {
-			updateDisplay("You decided to pick up a musket");
-			hasMusket = true;
-		} else if (userLoc === "Room10" && !hasMap) {
-			updateDisplay("You have picked up the ship map");
-			hasMap = true;
-			document.getElementById('map').style.display = 'block';
-			} 
+		 function user_Take() {
+		 	if (i === 3 && ! hasRuby) {
+				j = 0;
+				hasRuby = true;
+				updateDisplay(itemArray[j].toString());
+			} else if (i === 6 && ! hasMusket) {
+		 		j = 1;
+		 		hasMusket = true;
+				updateDisplay(itemArray[j].toString());
+			} else if (i === 9 && ! hasMap) {
+				j = 2;
+				hasMap = true;
+				document.getElementById('map').style.display = 'block';
+				updateDisplay(itemArray[j].toString());
+			} else if (i ===7 && ! hasLetter) {
+		 		j = 3;
+		 		hasLetter = true;
+				updateDisplay(itemArray[j].toString());
+			 }
 		}
-		
-		// function user_Take() {
-		// 
 		
 		// Statements made for all possibilities of holding items
 		function inventory_Search() {
 			msg = "User has:";
-			if (hasRuby === true && hasMusket === true && hasMap === true){
-				msg = msg + " A Ruby, a Musket, and a Map";
-	  	  		updateDisplay(msg);
+			if (hasRuby === true && hasMusket === true && hasMap === true && hasLetter === true) {
+				msg = msg + " a " + itemArray[0].name + " a " + itemArray[1].name + " a " + itemArray[2].name + " a " + itemArray[3].name;
+				updateDisplay(msg);
+			} else if (hasRuby === true && hasMusket === true && hasMap === true) {
+				msg = msg + " a " + itemArray[0].name + " a " + itemArray[1].name + " a " + itemArray[2].name;
+				updateDisplay(msg);
+			} else if (hasRuby === true && hasMusket === true && hasLetter === true) {
+				msg = msg + " a " + itemArray[0].name + " a " + itemArray[1].name + " a " + itemArray[3].name;
+				updateDisplay(msg);
+			} else if (hasRuby === true && hasMap === true && hasLetter === true) {
+				msg = msg + " a " + itemArray[0].name + " a " + itemArray[2].name + " a " + itemArray[3].name;
+				updateDisplay(msg);
+			} else if (hasMusket === true && hasMap === true && hasLetter === true) {
+				msg = msg + " a " + itemArray[1].name + " a " + itemArray[2].name + " a " + itemArray[3].name;
+				updateDisplay(msg);
 			} else if (hasRuby === true && hasMusket === true) {
-				msg = msg + " A Ruby and a Musket";
-	    		updateDisplay(msg);
+				msg = msg + " a " + itemArray[0].name + " a " + itemArray[1].name;
+				updateDisplay(msg);
 			} else if (hasRuby === true && hasMap === true) {
-				msg = msg + " A Ruby and a Map";
-	    		updateDisplay(msg);
-			} else if (hasMap === true && hasMusket === true) {
-				msg = msg + " A Map and a Musket";
-	    		updateDisplay(msg);
-			} else if (hasMusket === true) {
-				msg = msg + " a Musket";
+				msg = msg + " a " + itemArray[0].name + " a " + itemArray[2].name;
+				updateDisplay(msg);
+			} else if (hasRuby === true && hasLetter === true) {
+				msg = msg + " a " + itemArray[0].name + " a " + itemArray[3].name;
 				updateDisplay(msg);
 			} else if (hasRuby === true) {
-				msg = msg + " a Ruby";
+				msg = msg + " a " + itemArray[0].name;
+				updateDisplay(msg);
+			} else if (hasMusket === true && hasMap === true) {
+				msg = msg + " a " + itemArray[1].name + " a "  + itemArray[2].name;
+				updateDisplay(msg);
+			} else if (hasMusket === true && hasLetter === true) {
+				msg = msg + " a " + itemArray[1].name + " a " + itemArray[3].name;
+				updateDisplay(msg);
+			} else if (hasMusket === true) {
+				msg = msg + " a " + itemArray[1].name;
+				updateDisplay(msg);
+			} else if (hasMap === true && hasLetter === true) {
+				msg = msg + " a " + itemArray[2].name + " a " + itemArray[3].name;
 				updateDisplay(msg);
 			} else if (hasMap === true) {
-				msg = msg + " A map";
-				updatedisplay(msg);
-			} else {
+				msg = msg + " a " + itemArray[2].name;
 				updateDisplay(msg);
-			}	
-		}	
+			} else if (hasLetter === true) {
+				msg = msg + " a " + itemArray[3].name;
+				updateDisplay(msg);
+			}
+		}
 				
 		// Text Input/Button Alternatives
 		function input_Go() {
@@ -326,6 +371,8 @@
 			westClick();
 			} else if (mainText === "h"){
 			user_Help();
+			} else if (mainText === "i"){
+			inventory_Search();
 			} else {
 				updateDisplay("I do not understand this command."); 
 			}	
@@ -384,27 +431,7 @@
 			east_ClickDisabled();
 			west_ClickDisabled();
 		}
-	
-		//
-		// Story / Locale Functions
-		//
-		function look() {
-			var msg = " ";
-			switch(userLoc) {
-				case "Room1": basement(); break;
-				case "Room2": foyer(); break;
-				case "Room3": eastWing(); break;
-				case "Room4": westWing(); break;
-				case "Room5": crackedRoom(); break;
-				case "Room6": cptnQuart(); break;
-				case "Room7": armory(); break;
-				case "Room8": theBrig(); break;
-				case "Room9": windlass(); break;
-				case "Room10": secretCabin(); break;
-				default: msg = "This choice is impossible!";
-			}
-		}				
-		
+
 		//
 		// Utility Functions
 		//
