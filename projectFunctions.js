@@ -471,8 +471,6 @@
 				} 
 		}
 		
-		//javascript reload function
-		
 		//Displays the messages	
          function updateDisplay(msg) {
          	var targetTextArea = document.getElementById("target");
