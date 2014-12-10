@@ -2,15 +2,15 @@
 <html>
 	<head>
 	<!-- Alexander Goncalves
-		October 20th, 2014
-		CMPT 120: Project 3 -->
+		December 10th, 2014
+		CMPT 120: Final Project -->
 		<title>
 			Red Fox Adventures
 		</title>
 		<meta charset = "utf-8" />
 		<meta name = "author" content = "Alexander Goncalves" />
 		<meta name = "description" content = "Game V 0.2" />
-		<script src = "Exampleexample.js"> </script>
+		<script src = "projectFunctions.js"> </script>
 		<style>
 		body {background-color: Lavender}
 			.footer {color: LightCoral; font-weight: bold; font-family: AR DARLING;}
@@ -26,7 +26,7 @@
 				Email: agoncalves4141@gmail.com
 			</a>			
 		</p>
-		<img id="map" src = "Big Bad Project Map.jpg" alt = "Game Map" style = "display: none;" height = "450" width = "450" />
+		<img id="map" src = "Big%20Bad%20Project%20Map.jpg" alt = "Game Map" style = "display: none;" height = "450" width = "450" />
 		<textarea rows = "10" cols = "35" id = "target"> 
 		</textarea>
 		<br >
@@ -67,7 +67,12 @@
 				id = "inventory"
 				value = "Inventory"
 				onclick = "inventory_Search();" />
-				
+		
+		<input type = "button"
+				id = "userUse"
+				value = "Use"
+				onclick = "user_Use();" />
+						
 		<br />
 		<br/>
 		
@@ -76,7 +81,17 @@
 				name = "txtCommand" />
 		
 		<input type = "button"
+				id = "goInput"
 				value = "Go"
 				onclick = "input_Go();" />
+		
+		<br />
+		<br />
+		
+		<input type = "button"
+				id = "playagain"
+				value = "Play Again"
+				onclick = "window.location.reload()"/>
+				
 	</body>
 </html>	
