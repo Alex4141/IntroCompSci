@@ -232,14 +232,17 @@
 		   nextLoc(NORTH);			
 		}
 
+		// Takes You South
 		function southClick() {
 		   nextLoc(SOUTH);		
 		}
 		
+		// Takes You East
 		function eastClick() {
 		   nextLoc(EAST);		
 		}
 		
+		// Takes You West
 		function westClick() {
 		   nextLoc(WEST);	
 		}
