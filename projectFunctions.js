@@ -354,7 +354,7 @@
 			
 		// Takes account of navigation errors AKA the default		
 		function navigationError() {
-    	navigationErrorCount = navigationErrorCount + 1;
+    		navigationErrorCount = navigationErrorCount + 1;
         	if (navigationErrorCount < extremeError) {
         		updateDisplay("You cannot go that way. ");
         	} else {
